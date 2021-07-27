@@ -4,8 +4,7 @@ import br.com.zup.casadocodigo.model.dto.NovoAutorDTO;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -16,17 +15,15 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private String nome;
 
-    @NotNull
+    @NotBlank
     @Email
     @Column(unique=true)
     private String email;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
     @Size(max=400)
     @Column(length=400)
     private String descricao;
@@ -44,23 +41,4 @@ public class Autor {
     public Autor() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public LocalDateTime getDataRegistro() {
-        return dataRegistro;
-    }
 }
