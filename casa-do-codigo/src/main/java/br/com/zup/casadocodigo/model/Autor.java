@@ -63,8 +63,4 @@ public class Autor {
     public LocalDateTime getDataRegistro() {
         return dataRegistro;
     }
-
-    public void setDataRegistro(LocalDateTime dataRegistro) {
-        this.dataRegistro = dataRegistro;
-    }
 }
