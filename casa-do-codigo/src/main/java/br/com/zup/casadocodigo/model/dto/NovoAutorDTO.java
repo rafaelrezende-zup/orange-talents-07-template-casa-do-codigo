@@ -1,22 +1,23 @@
 package br.com.zup.casadocodigo.model.dto;
 
+import br.com.zup.casadocodigo.model.Autor;
+import br.com.zup.casadocodigo.validator.UniqueValue;
+
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class NovoAutorDTO {
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
     private String nome;
 
-    @NotNull
+    @NotBlank
     @Email
+    @UniqueValue(fieldName = "email", domainClass = Autor.class, message = "Já existe um cadastro com este email.")
     private String email;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
     @Size(max=400)
     private String descricao;
 

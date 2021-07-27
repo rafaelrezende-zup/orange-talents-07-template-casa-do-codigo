@@ -1,12 +1,14 @@
 package br.com.zup.casadocodigo.model.dto;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import br.com.zup.casadocodigo.model.Categoria;
+import br.com.zup.casadocodigo.validator.UniqueValue;
+
+import javax.validation.constraints.NotBlank;
 
 public class NovaCategoriaDTO {
 
-    @NotNull
-    @NotEmpty
+    @NotBlank
+    @UniqueValue(domainClass = Categoria.class, fieldName = "nome", message = "Já existe um cadastro com este nome.")
     private String nome;
 
     public String getNome() {
