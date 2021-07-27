@@ -4,11 +4,9 @@ import br.com.zup.casadocodigo.model.Autor;
 import br.com.zup.casadocodigo.model.dto.NovoAutorDTO;
 import br.com.zup.casadocodigo.repository.AutorRepository;
 import br.com.zup.casadocodigo.validator.EmailDuplicadoValidator;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -34,11 +32,7 @@ public class AutorController {
     @Transactional
     public ResponseEntity<?> cria(@RequestBody @Valid NovoAutorDTO dto) {
         Autor autor = new Autor(dto);
-        try {
-            repository.save(autor);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "E-mail já cadastrado.", e);
-        }
+        repository.save(autor);
         return ResponseEntity.ok().build();
     }
 
