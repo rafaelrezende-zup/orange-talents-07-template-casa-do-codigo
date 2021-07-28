@@ -53,4 +53,7 @@ public class Autor {
         return email;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
 }

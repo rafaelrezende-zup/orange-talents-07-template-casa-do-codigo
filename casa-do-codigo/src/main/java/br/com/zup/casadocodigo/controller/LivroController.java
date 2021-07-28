@@ -3,6 +3,7 @@ package br.com.zup.casadocodigo.controller;
 import br.com.zup.casadocodigo.model.Autor;
 import br.com.zup.casadocodigo.model.Categoria;
 import br.com.zup.casadocodigo.model.Livro;
+import br.com.zup.casadocodigo.model.dto.DetalheLivroDTO;
 import br.com.zup.casadocodigo.model.dto.ExibeLivroDTO;
 import br.com.zup.casadocodigo.model.dto.NovoLivroDTO;
 import br.com.zup.casadocodigo.repository.AutorRepository;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/livro")
@@ -55,6 +57,12 @@ public class LivroController {
     public ResponseEntity<List<ExibeLivroDTO>> exibeLivros() {
         List<Livro> livroList = repository.findAll();
         return ResponseEntity.ok(ExibeLivroDTO.toDto(livroList));
+    }
+
+    @GetMapping("/{idLivro}")
+    public ResponseEntity<DetalheLivroDTO> detalheLivro(@PathVariable Long idLivro) {
+        Optional<Livro> livro = repository.findById(idLivro);
+        return livro.map(i -> ResponseEntity.ok(new DetalheLivroDTO(i))).orElseGet(()->ResponseEntity.notFound().build());
     }
 
 }

@@ -97,4 +97,8 @@ public class Livro {
     public Autor getAutor() {
         return autor;
     }
+
+    public String getSumario() {
+        return sumario;
+    }
 }
