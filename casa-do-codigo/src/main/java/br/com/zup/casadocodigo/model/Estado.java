@@ -14,14 +14,19 @@ public class Estado {
     private Long id;
 
     @NotBlank
-    private final String nome;
+    private String nome;
 
     @NotNull
     @ManyToOne
-    private final Pais pais;
+    private Pais pais;
 
     public Estado(NovoEstadoDTO dto, Pais pais) {
         this.nome = dto.getNome();
         this.pais = pais;
     }
+
+    @Deprecated
+    public Estado() {
+    }
+
 }
